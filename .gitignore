@@ -1,0 +1,10 @@
+node_modules/
+.env
+.env.*
+!.env.example
+session/
+sessions/
+temp/
+data/*.json
+data/accounts.json
+data/registered-numbers.json

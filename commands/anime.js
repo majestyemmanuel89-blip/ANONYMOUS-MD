@@ -1,0 +1,3 @@
+const commandNames = ["animenews", "animewlp", "animewallpaper", "animechar", "animerec", "animesearch", "animequote", "digimon", "hug", "kiss", "pat", "lick", "bite", "yeet", "bully", "bonk", "wink", "poke", "nom", "smile", "wave", "blush", "dance", "cry", "happy", "laugh", "angry", "cuddle", "highfive", "sleep", "awoo", "smug", "glomp", "cringe", "handhold", "shinobu", "fox", "koala", "bird", "panda", "dog", "cat"];
+async function handleCommand({ command, jid, sock }) { if (!commandNames.includes(command)) return false; await sock.sendMessage(jid, { text: "No anime API is configured for this command." }); return true; }
+module.exports = { commandNames, handleCommand };

@@ -1,0 +1,8 @@
+{
+    "chat.tools.terminal.autoApprove": {
+        "/^node -p \"JSON\\.stringify\\(require\\('\\./lib/menu-catalog'\\)\\.getVerifiedMenuCategories\\(\\{context:\\{jid:'15550000000@s\\.whatsapp\\.net',isOwner:false\\},commandGroups:require\\('\\./commands/core'\\)\\.getCommandGroups\\(require\\('\\./lib/command-handler'\\)\\.commandModules\\),canExecuteCommand:require\\('\\./lib/command-handler'\\)\\.canExecuteCommand\\}\\)\\.map\\(category=>\\[category\\.title,category\\.commands\\.length\\]\\)\\)\"$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    }
+}
