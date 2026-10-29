@@ -220,6 +220,29 @@ test("pairing endpoint uses the real connection callback and requires CSRF prote
     }
 });
 
+test("pairing endpoint allows repeated pairing requests without an hourly cooldown", async () => {
+    const { server, baseUrl, sessionManager } = await createServer();
+    try {
+        const { data, cookie } = await login(baseUrl);
+        for (let attempt = 0; attempt < 4; attempt += 1) {
+            const response = await fetch(`${baseUrl}/api/admin/sessions/pair`, {
+                method: "POST",
+                headers: {
+                    Cookie: cookie,
+                    "Content-Type": "application/json",
+                    "X-CSRF-Token": data.csrfToken
+                },
+                body: JSON.stringify({ number: `23480987654${attempt}` })
+            });
+            assert.equal(response.status, 201);
+            assert.equal((await response.json()).pairingCode, "REAL-CODE-FROM-CONNECTOR");
+            sessionManager.records.delete("secondary-1");
+        }
+    } finally {
+        await closeServer(server);
+    }
+});
+
 test("session responses mask phone numbers and never serialize credentials", async () => {
     const { server, baseUrl } = await createServer();
     try {
